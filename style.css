@@ -26,6 +26,8 @@ main{
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	margin: 0 auto;
+	max-width: 1350px;
 }
 
 h1,h2,h3,h4,h5{
@@ -66,7 +68,7 @@ button{
 }
 
 .carter{
-	padding: .75em 1.5em;
+	padding: 1rem;
 }
 
 .quantifier{
@@ -90,7 +92,11 @@ picture{
 
 picture > img{
 	width: 100%;
+}
 
+main article{
+	max-width: 880px;
+	margin: 0 auto;
 }
 
 .rad{
@@ -107,7 +113,8 @@ picture > img{
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	width: 33%;
+	/*width: 33%;*/
+	flex-basis: 200px;
 }
 
 .dessert button{
@@ -140,11 +147,15 @@ picture > img{
 .cart{
 	--bg: var(--rose-50);
 	background: var(--bg);
-	padding: 1rem;
+	padding: 2rem;
 }
 
 .empty-msg{
 	text-align: center;
+}
+
+.empty-msg p{
+	margin-top: 1rem;
 }
 
 .hint{
@@ -152,6 +163,14 @@ picture > img{
 	font-weight: 600;
 }
 
-@media screen and (min-width:600px) {
-	
+@media screen and (min-width:1065px) {
+	main{
+		flex-direction: row;
+	}
+
+	aside{
+		flex-shrink: 0;
+		flex-grow: 1;
+		align-self: flex-start;
+	}
 }
