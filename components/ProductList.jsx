@@ -5,7 +5,8 @@ export default function ProductList(props){
 	const productElements = props.productData.map(product => {
 		return (
 			<Product key={product.id} product={product}
-			onClick={props.onClick}
+			substracter={props.substracter}
+			adder={props.adder}
 			/>
 		)
 	})

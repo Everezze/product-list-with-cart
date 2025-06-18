@@ -5,6 +5,7 @@ import productData from "../data.json";
 
 export default function Main(){
 	let i=0;
+	//let cartFilled = false;
 
 	const [products,setProducts] = React.useState(
 		//() => {
@@ -19,13 +20,35 @@ export default function Main(){
 			//console.log("category is: ",category);
 			return {
 				...product,carted:false,
-				id:i++
+				id:i++,count:0
 			}
 		})
 	);
-	console.log(products);
+	//console.log(products);
+	//console.log(cartFilled);
 
-	function addToCart(e){
+	function incrementQuantity(e){
+		const el = e.currentTarget;
+		//console.log("clicked on: ",el);
+		const parent = el.closest(".dessert");
+		const productId = parent.dataset.id;
+		//cartFilled = true;
+		setProducts(prevProducts => {
+			return prevProducts.map(product=> {
+				if(prevProducts[productId] === product){
+					const temp = {...product,carted:true,count:product.count + 1};
+					console.log(product.count+1);
+					return temp;
+				}
+				else{
+					return product;
+				}
+			});
+		});
+		//parent.classList.toggle("active");
+	}
+
+	function decrementQuantity(e){
 		const el = e.currentTarget;
 		//console.log("clicked on: ",el);
 		const parent = el.closest(".dessert");
@@ -33,7 +56,13 @@ export default function Main(){
 		setProducts(prevProducts => {
 			return prevProducts.map(product=> {
 				if(prevProducts[productId] === product){
-					return {...product,carted: !product.carted}
+					if(product.count - 1 < 1 ){
+						//cartFilled = false;
+						return {...product,carted:false,count:0}
+					}
+					else{
+						return {...product,carted:true,count:product.count - 1}
+					}
 				}
 				else{
 					return product;
@@ -43,12 +72,16 @@ export default function Main(){
 		//parent.classList.toggle("active");
 	}
 	
+	
 	return (
 		<main>
-			<ProductList onClick={addToCart}
+			<ProductList adder={incrementQuantity}
+				substracter={decrementQuantity}
 				productData={products}
 			/>
-			<Cart />
+			<Cart 
+				productData={products}
+			/>
 		</main>
 	)
 }

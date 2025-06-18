@@ -1,5 +1,5 @@
 export default function Product(props){
-	console.log(props);
+	//console.log(props);
 	const product = props.product;
 	const isActive = product.carted ? "active":"";
 	return (
@@ -8,17 +8,17 @@ export default function Product(props){
 				<source srcSet={product.image.mobile}
 				media="(max-width:600px)"/>
 				<img src={product.image.desktop} alt=""/>
-				<button onClick={props.onClick}>
-					<div className="carter">
+				<button>
+					<div className="carter"onClick={props.adder}>
 						<img src="assets/images/icon-add-to-cart.svg" alt=""/>
 						Add to Cart
 					</div>
 					<div className="quantifier">
-						<span  className="operator decrementor">
+						<span  className="operator decrementor" onClick={props.substracter}>
 							<img src="assets/images/icon-decrement-quantity.svg" alt="" />
 						</span>
-						<span className="count">0</span>
-						<span className="operator incrementor">
+						<span className="count">{product.count}</span>
+						<span className="operator incrementor" onClick={props.adder}>
 							<img src="assets/images/icon-increment-quantity.svg" alt="" />
 						</span>
 					</div>
