@@ -76,6 +76,33 @@ button{
 	display: none;
 }
 
+.quantifier .count{
+	margin: 0 2em;
+}
+
+.quantifier .incrementor img{
+	vertical-align: baseline;
+}
+
+.quantifier .decrementor img{
+	vertical-align: super;
+}
+
+
+.quantifier > *{
+	vertical-align: middle;
+}
+
+.operator{
+	display: inline-block;
+	width: 20px;
+	height:20px;
+	border-radius: 50%;
+	overflow: hidden;
+	padding: .15em;
+	border : 1px solid var(--fg-btn);
+}
+
 button img{
 	vertical-align: middle;
 }
@@ -117,23 +144,44 @@ main article{
 	flex-basis: 200px;
 }
 
+.dessert.active{
+	--bg-btn:var(--red);
+	--fg-btn: var(--rose-50);
+}
+
+.dessert.active .carter{
+	display: none;
+}
+
+.dessert.active .quantifier{
+	display: block;
+}
+
+
+.dessert picture>img{
+	border: 1px solid var(--fg-btn);
+}
+
 .dessert button{
 	border: 1px solid var(--fg-btn,var(--rose-400));
 	position: absolute;
 	bottom: 0;
 	left:50%;
 	transform: translate(-50%,50%);
+	overflow: hidden;
 }
 
-.dessert button:hover{
+.dessert .carter:hover,
+.dessert.active picture>img
+{
 	--fg-btn: var(--red);
 }
 
-.dessert span,.dessert h4,.dessert h5{
+.dessert > span,.dessert h4,.dessert h5{
 	color: var(--fg);
 }
 
-.dessert span{
+.dessert > span{
 	--fg: var(--rose-500);
 }
 
