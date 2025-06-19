@@ -1,5 +1,6 @@
 :root{
 	--red: hsl(14, 86%, 42%);
+	--red-800:hsl(14, 86%, 25%);
 	--green: hsl(159, 69%, 38%);
 	--rose-50: hsl(20, 50%, 98%);
 	--rose-100: hsl(13, 31%, 94%);
@@ -41,7 +42,6 @@ h1{
 
 h3,h5{
 	--fg: var(--red);
-	color:var(--fg);
 }
 
 h3{
@@ -57,6 +57,10 @@ p{
 	margin: 0;
 }
 
+path{
+	fill: var(--svg-clr,black);
+}
+
 button{
 	width: max-content;
 	padding: var(--padd-btn);
@@ -65,10 +69,18 @@ button{
 	background: var(--bg-btn,var(--rose-50));
 	cursor: pointer;
 	font-weight: 600;
+	border:none;
+}
+
+.df{
+	display: flex;
 }
 
 .carter{
+	border: 1px solid var(--fg-btn,var(--rose-400));
 	padding: 1rem;
+	border-radius: 2rem;
+	color:var(--fg-btn);
 }
 
 .quantifier{
@@ -80,27 +92,17 @@ button{
 	margin: 0 2em;
 }
 
-.quantifier .incrementor img{
-	vertical-align: baseline;
-}
-
-.quantifier .decrementor img{
-	vertical-align: super;
-}
-
-
 .quantifier > *{
 	vertical-align: middle;
 }
 
 .operator{
+	--svg-clr: var(--fg-btn);
 	display: inline-block;
-	width: 20px;
-	height:20px;
-	border-radius: 50%;
 	overflow: hidden;
-	padding: .15em;
 	border : 1px solid var(--fg-btn);
+	display: flex;
+	align-items: center;
 }
 
 button img{
@@ -147,6 +149,7 @@ main article{
 .dessert.active{
 	--bg-btn:var(--red);
 	--fg-btn: var(--rose-50);
+	--btn-border:none;
 }
 
 .dessert.active .carter{
@@ -154,7 +157,8 @@ main article{
 }
 
 .dessert.active .quantifier{
-	display: block;
+	display: flex;
+	align-items: center;
 }
 
 
@@ -163,12 +167,10 @@ main article{
 }
 
 .dessert button{
-	border: 1px solid var(--fg-btn,var(--rose-400));
 	position: absolute;
 	bottom: 0;
 	left:50%;
 	transform: translate(-50%,50%);
-	overflow: hidden;
 }
 
 .dessert .carter:hover,
@@ -177,12 +179,20 @@ main article{
 	--fg-btn: var(--red);
 }
 
-.dessert > span,.dessert h4,.dessert h5{
+.indicator,.dessert h4,h5,h3{
 	color: var(--fg);
 }
 
-.dessert > span{
+.indicator{
 	--fg: var(--rose-500);
+}
+
+.price{
+	margin: 0 .5em 0 .75em;
+}
+
+.product-total{
+	font-weight: bold;
 }
 
 .flavor{
@@ -192,7 +202,7 @@ main article{
 	color:var(--fg);
 }
 
-.cart{
+.card{
 	--bg: var(--rose-50);
 	background: var(--bg);
 	padding: 2rem;
@@ -209,6 +219,105 @@ main article{
 .hint{
 	color: var(--rose-500);
 	font-weight: 600;
+}
+
+.carted-product{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--carted-border,var(--rose-100));
+	padding: 1em 0;
+}
+
+.carted-product .total-price{
+	font-size: 1.25em;
+	font-weight: 500;
+}
+
+.img-container{
+	border-radius: 50%;
+	border:1px solid var(--svg-clr);
+	width: var(--img-width,20px);
+	height: var(--img-width,20px);
+	padding: var(--img-container-padd,.35em);
+}
+
+.img-container img{
+	width: 100%;
+}
+
+.carted-product .img-container{
+	--svg-clr: var(--rose-300);
+	--img-container-padd:.25em;
+	display: flex;
+	cursor: pointer;
+}
+
+.carted-product .img-container:hover{
+	--svg-clr: var(--rose-900);
+}
+
+.total-price{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--total-padding,1.5em 0);
+}
+
+.carbon{
+	background: var(--rose-100);
+	padding: 1em 2em;
+	border-radius: .5rem;
+	text-align: center;
+}
+
+.carbon img{
+	margin-right: .5rem;
+}
+
+.carbon b{
+	font-size: .9em;
+}
+
+.confirm-order{
+	--fg-btn: var(--rose-50);
+	--bg-btn: var(--red);
+	width: 100%;
+	padding: 1em 1.5em;
+	font-size: 1em;
+	border: none;
+	margin-top: 1.75rem;
+}
+
+.card button:hover{
+	--bg-btn: var(--red-800);
+}
+
+.confirmed-order{
+	position: fixed;
+	width: 600px;
+}
+
+.confirmed-order .img-container{
+	--img-width:50px;
+}
+
+.confirmed-order h2{
+	font-size: 2em;
+	margin: 1rem 0 .5rem;
+}
+
+.bought-desc{
+	align-items: center;
+	gap: 1rem;
+}
+
+.sumup-container{
+	--carted-border: var(--rose-300);
+	--total-padding: 1em 0;
+	background: var(--rose-100);
+	padding: 1rem 2rem 0;
+	margin: 2rem 0 0;
 }
 
 @media screen and (min-width:1065px) {

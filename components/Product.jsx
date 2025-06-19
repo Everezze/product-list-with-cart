@@ -14,11 +14,11 @@ export default function Product(props){
 						Add to Cart
 					</div>
 					<div className="quantifier">
-						<span  className="operator decrementor" onClick={props.substracter}>
+						<span  className="operator decrementor img-container" onClick={props.substracter}>
 							<img src="assets/images/icon-decrement-quantity.svg" alt="" />
 						</span>
 						<span className="count">{product.count}</span>
-						<span className="operator incrementor" onClick={props.adder}>
+						<span className="operator incrementor img-container" onClick={props.adder}>
 							<img src="assets/images/icon-increment-quantity.svg" alt="" />
 						</span>
 					</div>

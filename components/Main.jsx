@@ -2,22 +2,13 @@ import React from 'react';
 import ProductList from "./ProductList";
 import Cart from "./Cart";
 import productData from "../data.json";
+import OrderConfirmed from './OrderConfirmed';
 
 export default function Main(){
 	let i=0;
-	//let cartFilled = false;
-
+	const [order,setOrder] = React.useState(false);
 	const [products,setProducts] = React.useState(
-		//() => {
-		//	let decoyObj = {};
-		//	productData.forEach(product=>{
-		//		const {category,...restProduct} = product;
-		//		decoyObj[category] = {...restProduct,carted:false}
-		//	});
-		//	return decoyObj;
-		//}
 		productData.map(product=> {
-			//console.log("category is: ",category);
 			return {
 				...product,carted:false,
 				id:i++,count:0
@@ -32,7 +23,6 @@ export default function Main(){
 		//console.log("clicked on: ",el);
 		const parent = el.closest(".dessert");
 		const productId = parent.dataset.id;
-		//cartFilled = true;
 		setProducts(prevProducts => {
 			return prevProducts.map(product=> {
 				if(prevProducts[productId] === product){
@@ -45,7 +35,6 @@ export default function Main(){
 				}
 			});
 		});
-		//parent.classList.toggle("active");
 	}
 
 	function decrementQuantity(e){
@@ -69,10 +58,38 @@ export default function Main(){
 				}
 			});
 		});
-		//parent.classList.toggle("active");
+	};
+
+	function removeProductFromCart(e){
+		const el = e.currentTarget;
+		const parent = el.closest(".carted-product");
+		const productId = parent.dataset.id;
+		setProducts(prevProducts => {
+			return prevProducts.map(product=> {
+				if(prevProducts[productId] === product){
+					const temp = {...product,carted:false,count:0};
+					console.log("temp new product",temp);
+					return temp;
+				}
+				else{
+					return product;
+				}
+			})
+		});
+	};
+
+	function handleOrder(){
+		setOrder(true);
 	}
-	
-	
+
+	function showOrder(){
+		if(order){
+			return (
+				<OrderConfirmed productData={products} />
+			)
+		}
+	}
+
 	return (
 		<main>
 			<ProductList adder={incrementQuantity}
@@ -81,7 +98,10 @@ export default function Main(){
 			/>
 			<Cart 
 				productData={products}
+				removeProductFromCart={removeProductFromCart}
+				handleOrder={handleOrder}
 			/>
+			{showOrder()}
 		</main>
 	)
 }
