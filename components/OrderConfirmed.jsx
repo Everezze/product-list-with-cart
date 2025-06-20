@@ -19,23 +19,25 @@ export default function OrderConfirmed(props){
 	console.log(boughtElements);
 
 	return (
-		<article className="card rad confirmed-order">
-			<div className="img-container">
-				<img src="assets/images/icon-order-confirmed.svg" alt="" />
-			</div>
-			<h2>Order Confirmed</h2>
-			<p>We hope you enjoy your food!</p>
-			<div className="sumup-container rad">
-				<div className="carted-products">
-					{boughtElements}
+		<div className="order-background">
+			<article className="card rad confirmed-order">
+				<div className="img-container">
+					<img src="assets/images/icon-order-confirmed.svg" alt="" />
 				</div>
-				<div className="total-price">
-					<span>Order Total</span>
-					<h2>${totalPrice}</h2>
+				<h2>Order Confirmed</h2>
+				<p>We hope you enjoy your food!</p>
+				<div className="sumup-container rad">
+					<div className="carted-products">
+						{boughtElements}
+					</div>
+					<div className="total-price">
+						<span>Order Total</span>
+						<h2>${totalPrice}</h2>
+					</div>
 				</div>
-			</div>
-			<button className="confirm-order">Start new Order</button>
-		</article>
+				<button className="confirm-order" onClick={props.newOrder}>Start new Order</button>
+			</article>
+		</div>
 	)
 
 }

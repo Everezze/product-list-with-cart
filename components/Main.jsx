@@ -78,14 +78,23 @@ export default function Main(){
 		});
 	};
 
-	function handleOrder(){
+	function displayOrder(){
 		setOrder(true);
+	}
+
+	function newOrder(){
+		setOrder(false);
+		setProducts(prevProducts => {
+			return prevProducts.map(product=> {
+				return {...product,count:0,carted:false}
+			})
+		})
 	}
 
 	function showOrder(){
 		if(order){
 			return (
-				<OrderConfirmed productData={products} />
+				<OrderConfirmed productData={products} newOrder={newOrder} />
 			)
 		}
 	}
@@ -99,7 +108,7 @@ export default function Main(){
 			<Cart 
 				productData={products}
 				removeProductFromCart={removeProductFromCart}
-				handleOrder={handleOrder}
+				displayOrder={displayOrder}
 			/>
 			{showOrder()}
 		</main>

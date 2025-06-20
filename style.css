@@ -293,9 +293,18 @@ main article{
 	--bg-btn: var(--red-800);
 }
 
-.confirmed-order{
+.order-background{
+	background: hsla(0,0%,0%,20%);
 	position: fixed;
-	width: 600px;
+	inset:0;
+	display: flex;
+	align-items: center;
+}
+
+.confirmed-order{
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
 }
 
 .confirmed-order .img-container{

@@ -37,7 +37,7 @@ export default function Cart(props){
 						<img src="assets/images/icon-carbon-neutral.svg" alt="" />
 						This is a <b>carbon-neutral</b> delivery
 					</div>
-					<button className="confirm-order" onClick={props.handleOrder}>Confirm order</button>
+					<button className="confirm-order" onClick={props.displayOrder}>Confirm order</button>
 				</>
 			)
 		}
